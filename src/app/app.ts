@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CatEventUpdatesFeedComponent } from './components/cat-event-updates-feed/cat-event-updates-feed';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
-  templateUrl: './app.html',
+  standalone: true,
+  imports: [CommonModule, CatEventUpdatesFeedComponent],
+  template: `<app-cat-event-updates-feed></app-cat-event-updates-feed>`
 })
-export class App {
-  protected readonly title = signal('NotificationClient');
-}
+export class AppComponent {}

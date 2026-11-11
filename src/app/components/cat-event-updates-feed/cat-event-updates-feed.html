@@ -1,0 +1,28 @@
+<div class="feed-wrapper">
+  <div class="feed-header">
+    <div class="title-group">
+      <h2>Live Cat Event Updates Feed</h2>
+      <p class="subtitle">Real-time enterprise notification feed via SignalR WebSockets</p>
+    </div>
+    <div class="status-indicator">
+      <span class="dot" [class.online]="isOnline"></span>
+      <span>{{ isOnline ? 'Live Connected' : 'Connecting...' }}</span>
+    </div>
+  </div>
+
+  <div class="scrollable-region">
+    <div *ngIf="notifications.length === 0; else eventList" class="empty-state">
+      <p>Waiting for incoming cat catastrophe events...</p>
+    </div>
+
+    <ng-template #eventList>
+      <div *ngFor="let item of notifications" class="notification-card">
+        <div class="card-meta">
+          <span class="event-id">ID: {{ item.eventId }}</span>
+          <span class="event-time">{{ item.createdAt | date:'mediumTime' }}</span>
+        </div>
+        <div class="rich-html-content" [innerHTML]="item.safeHtmlContent"></div>
+      </div>
+    </ng-template>
+  </div>
+</div>
